@@ -1,5 +1,5 @@
 # Ex02 Django ORM Web Application
-## Date: 18/10/2023
+## Date: 04-04-2024
 
 ## AIM
 To develop a Django application to store and retrieve data from a Football Players database using Object Relational Mapping(ORM).
@@ -23,8 +23,46 @@ Enter the code for admin.py and models.py
 Execute Django admin and create 10 Football players
 
 ## PROGRAM
-
+## Admin.py:
 ```
+from django.contrib import admin
+from.models import library,libraryAdmin
+admin.site.register(library,libraryAdmin)
+```
+
+## models.py:
+```
+from django.db import models
+from django.contrib import admin
+class library(models.Model):
+      serielno=models.IntegerField(primary_key=True);
+      book_name=models.CharField(max_length=20);
+      authorname=models.CharField(max_length=20);
+      subject=models.CharField(max_length=50);
+      publisher=models.CharField(max_length=10);
+class libraryAdmin(admin.ModelAdmin):
+      list_display=("serielno","book_name","authorname","subject","publisher");
+```
+## Urls.py:
+```
+from django.contrib import admin
+from django.urls import path
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+]
+```
+## Apps.py:
+```
+from django.apps import AppConfig
+
+
+class OrmappConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'ormapp'
+```
+
+
 
 admin.py
 from django.contrib import admin
@@ -49,7 +87,8 @@ class EmployeeAdmin(admin.ModelAdmin):
 
 ## OUTPUT
 
-![image](https://github.com/karnashankar/ORM/assets/121109150/aa417f64-da88-4d6b-b35c-19f31f27900c)
+![Screenshot 2024-04-04 152944](https://github.com/karnashankar/ORM/assets/121109150/f08efbde-1b73-4f50-a733-ebf563e995fa)
+
 
 
 
